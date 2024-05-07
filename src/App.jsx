@@ -20,17 +20,25 @@ function App() {
     }
     setPassword(pass);
   },[length, allowChar, allowNum])
+  const passwordRef = useRef(null)
   
   useEffect(passwordGenerator,[length,allowChar, allowNum])
+  const copyPasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    passwordRef.current?.setSelectionRange(0, 999);
+    window.navigator.clipboard.writeText(password)
+  }, [password])
   return (
     <>
     <div className=''>
       <h1>Password Generator</h1>
       <div>
         <input type="text" value={password} readOnly 
+        ref={passwordRef}
         className="outline-none w-full px-3 py-1 border-b-4"
         />
         <input type="button" value="Copy" 
+        onClick={copyPasswordToClipboard}
         className="border-separate" />
       </div>
       <div>
@@ -42,11 +50,13 @@ function App() {
       </div>
       <div>
         <input type="checkbox" name="" id="numcheck"
+        onChange={()=>{setAllowNum((prev)=>!prev)}}
         className='' />
         <label htmlFor="numcheck">Number</label>
       </div>
       <div>
         <input type="checkbox" name="" id="charcheck" 
+        onChange={()=>{setAllowChar((prev)=>!prev)}}
         className=''/>
         <label htmlFor="charcheck">Character</label>
       </div>
