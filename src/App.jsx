@@ -29,40 +29,45 @@ function App() {
     window.navigator.clipboard.writeText(password)
   }, [password])
   return (
-    <>
-    <div className=''>
-      <h1>Password Generator</h1>
-      <div>
+    <div className='container mx-auto p-4 max-w-4xl bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg shadow-lg'>
+      <h1 className='text-3xl font-bold text-center text-white mb-6'>Password Generator</h1>
+      <div className='flex justify-between items-center mb-4 bg-white p-2 rounded shadow'>
         <input type="text" value={password} readOnly 
-        ref={passwordRef}
-        className="outline-none w-full px-3 py-1 border-b-4"
+          ref={passwordRef}
+          className="bg-transparent p-2 rounded focus:outline-none flex-grow mr-2 transition duration-300 ease-in-out transform focus:scale-105"
+          style={{ flex: '8' }}
         />
-        <input type="button" value="Copy" 
-        onClick={copyPasswordToClipboard}
-        className="border-separate" />
+        <button onClick={copyPasswordToClipboard}
+          className="px-4 py-2 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out transform active:scale-95"
+          style={{ flex: '2' }}>
+          Copy
+        </button>
       </div>
-      <div>
-        <input type="range"
-        min={8}
-        max={20}
-        onChange={(e)=>{setLength(e.target.value)}}/>
-        <label>range {length}</label>
+      <div className='my-4'>
+        <input type="range" min={8} max={20} value={length}
+          onChange={(e) => {setLength(e.target.value)}}
+          className="cursor-pointer w-64 bg-transparent focus:outline-none focus:ring-3"
+        />
+        <label className='block text-sm font-medium text-white'>Length: {length}</label>
       </div>
-      <div>
-        <input type="checkbox" name="" id="numcheck"
-        onChange={()=>{setAllowNum((prev)=>!prev)}}
-        className='' />
-        <label htmlFor="numcheck">Number</label>
+      <div className='flex items-center space-x-2 text-white'>
+        <input type="checkbox" id="numcheck"
+          checked={allowNum}
+          onChange={() => {setAllowNum((prev) => !prev)}}
+          className='rounded text-blue-500 focus:ring-blue-500'
+        />
+        <label htmlFor="numcheck" className='text-sm font-medium'>Include Numbers</label>
       </div>
-      <div>
-        <input type="checkbox" name="" id="charcheck" 
-        onChange={()=>{setAllowChar((prev)=>!prev)}}
-        className=''/>
-        <label htmlFor="charcheck">Character</label>
+      <div className='flex items-center space-x-2 text-white'>
+        <input type="checkbox" id="charcheck" 
+          checked={allowChar}
+          onChange={() => {setAllowChar((prev) => !prev)}}
+          className='rounded text-blue-500 focus:ring-blue-500'
+        />
+        <label htmlFor="charcheck" className='text-sm font-medium'>Include Characters</label>
       </div>
     </div>
-    </>
-  )
+  );  
 }
 
 export default App
