@@ -71,9 +71,14 @@ To run this project, follow these steps:
   ```javascript
   const passwordRef = useRef(null);
   ```
+  
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs or feature suggestions.
 
 ---
+
+## Credits
+
+This project was inspired by the "Chai aur Code" YouTube channel. You can watch the tutorial that influenced this project here: [Chai aur Code Tutorial](https://www.youtube.com/watch?v=Lt4vy8hfc-s&list=PLu71SKxNbfoDqgPchmvIsL4hTnJIrtige&index=11).
